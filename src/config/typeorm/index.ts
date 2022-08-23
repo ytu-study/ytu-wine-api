@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { join } from 'path';
+import { getMetadataArgsStorage } from 'typeorm';
 
 @Injectable()
 export class TypeormService implements TypeOrmOptionsFactory {
@@ -8,7 +8,7 @@ export class TypeormService implements TypeOrmOptionsFactory {
     return {
       type: 'mongodb',
       url: process.env.DB_URL,
-      entities: [join(__dirname, '../../', '**/**.entity{.ts,.js}')],
+      entities: getMetadataArgsStorage().tables.map(tbl => tbl.target),
       synchronize: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
