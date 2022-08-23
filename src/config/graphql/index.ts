@@ -1,27 +1,35 @@
 import { ApolloDriverConfig } from '@nestjs/apollo';
 import { Injectable } from '@nestjs/common';
 import { GqlOptionsFactory } from '@nestjs/graphql';
-import { GraphQLError, GraphQLFormattedError } from 'graphql';
+import { GraphQLFormattedError } from 'graphql';
+import { join } from 'path';
 import { ObjectLiteral } from 'typeorm';
 
 @Injectable()
 export class GraphqlService implements GqlOptionsFactory {
   private endpoint = '/v1/graphql';
+  private isDevelopment = process.env.NODE_ENV === 'development';
 
   createGqlOptions(): ApolloDriverConfig {
     return {
-      path: this.endpoint,
-      autoSchemaFile: true,
-      useGlobalPrefix: true,
-      playground: { endpoint: this.endpoint },
+      autoSchemaFile: !this.isDevelopment || join(process.cwd(), 'src/schema.gql'),
       cors: true,
+      path: this.endpoint,
+      useGlobalPrefix: true,
+      playground: true,
       introspection: true,
-      formatError: (error: GraphQLError): GraphQLFormattedError & ObjectLiteral => ({
-        message: error.message,
-        code: error.extensions?.code,
-        locations: error.locations,
-        path: error.path,
-      }),
+      sortSchema: true,
+      debug: this.isDevelopment,
+      formatError: ({ extensions, ...error }) => {
+        const { code, response } = (extensions ?? {}) as { code: number; response: ObjectLiteral };
+        if (!response) return { ...error, code };
+
+        const validations = (response).message;
+        const validation = validations.reduce((acc, obj) => ({ ...acc, ...obj }), {});
+        const [message] = Object.values(validation);
+
+        return { ...response, code, message, validation } as GraphQLFormattedError;
+      },
     };
   }
 }
