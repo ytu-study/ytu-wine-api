@@ -38,7 +38,7 @@ export class Wine {
 
   @Expose()
   @Column()
-  @Field(() => Int)
+  @Field(() => Int, { nullable: true })
   price: number;
 
   @Expose()
@@ -73,7 +73,7 @@ export class Wine {
 
   @Expose()
   @Column()
-  @Field()
+  @Field({ nullable: true })
   foodMatching: string;
 
   @Expose()
