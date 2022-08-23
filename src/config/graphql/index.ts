@@ -12,7 +12,7 @@ export class GraphqlService implements GqlOptionsFactory {
 
   createGqlOptions(): ApolloDriverConfig {
     return {
-      autoSchemaFile: !this.isDevelopment || join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: true,
       cors: true,
       path: this.endpoint,
       useGlobalPrefix: true,
