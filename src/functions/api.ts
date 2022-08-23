@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import * as express from 'express';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import serverless from 'serverless-http';
+import * as serverless from 'serverless-http';
 import { createServer } from '@/main';
 
 const functionsName = readdirSync(join(__dirname)).find((name) => name.includes('js')) ?? 'api';
