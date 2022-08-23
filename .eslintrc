@@ -39,6 +39,7 @@
     "max-classes-per-file": "off",
     "lines-between-class-members": "off",
     "class-methods-use-this": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "arrow-parens": ["error", "as-needed"]
   }
 }
