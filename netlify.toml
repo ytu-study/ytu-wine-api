@@ -1,0 +1,5 @@
+[build]
+command = "npm i && npm run build"
+functions = "dist/functions"
+publish = "dist"
+
