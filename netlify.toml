@@ -4,4 +4,4 @@ functions = "dist/functions"
 publish = "dist"
 [[redirects]]
 from = "/*"
-to = "/.netlify/functions/:splat"
+to = "/.netlify/functions/api/:splat"
