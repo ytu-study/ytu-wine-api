@@ -73,8 +73,8 @@ export class Wine {
 
   @Expose()
   @Column()
-  @Field({ nullable: true })
-  foodMatching: string;
+  @Field(() => [String], { nullable: true })
+  foodMatching: string[];
 
   @Expose()
   @Column()
