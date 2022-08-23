@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '@/app.module';
 import { WineResolver } from './wine.resolver';
 
 describe('WineResolver', () => {
@@ -6,13 +7,14 @@ describe('WineResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [WineResolver],
+      imports: [AppModule],
     }).compile();
 
     resolver = module.get<WineResolver>(WineResolver);
   });
 
-  it('should be defined', () => {
-    expect(resolver).toBeDefined();
+  it('getWines', async () => {
+    const wines = await resolver.getWines();
+    expect(wines).not.toBeUndefined();
   });
 });

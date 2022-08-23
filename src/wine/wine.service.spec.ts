@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '@/app.module';
 import { WineService } from './wine.service';
 
 describe('WineService', () => {
@@ -6,13 +7,14 @@ describe('WineService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [WineService],
+      imports: [AppModule],
     }).compile();
 
     service = module.get<WineService>(WineService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('getWines', async () => {
+    const wines = await service.getWines();
+    expect(wines).not.toBeUndefined();
   });
 });
