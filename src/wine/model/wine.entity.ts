@@ -1,12 +1,10 @@
-import {
-  Field, Int, Float, ObjectType,
-} from '@nestjs/graphql';
+import { Field, Int, Float, ObjectType } from '@nestjs/graphql';
 import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { v4 } from 'uuid';
 
 @Entity()
-@ObjectType('wine')
+@ObjectType()
 export class Wine {
   @Expose()
   @ObjectIdColumn({ type: 'uuid' })
