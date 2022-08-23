@@ -6,12 +6,13 @@ import { ObjectLiteral } from 'typeorm';
 
 @Injectable()
 export class GraphqlService implements GqlOptionsFactory {
-  private endpoint = '/api/graphql';
+  private endpoint = '/v1/graphql';
 
   createGqlOptions(): ApolloDriverConfig {
     return {
       path: this.endpoint,
       autoSchemaFile: true,
+      useGlobalPrefix: true,
       playground: { endpoint: this.endpoint },
       cors: true,
       introspection: true,
