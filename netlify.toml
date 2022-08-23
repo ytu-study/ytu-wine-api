@@ -2,4 +2,6 @@
 command = "npm install && npm run build"
 functions = "dist/functions"
 publish = "dist"
-
+[[redirects]]
+from = "/*"
+to = "/.netlify/functions/:splat"
