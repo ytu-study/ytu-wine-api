@@ -6,7 +6,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { v4 } from 'uuid';
 
 @Entity()
-@ObjectType()
+@ObjectType('wine')
 export class Wine {
   @Expose()
   @ObjectIdColumn({ type: 'uuid' })
