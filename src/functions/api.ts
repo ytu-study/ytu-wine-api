@@ -1,6 +1,5 @@
 import { INestApplication } from '@nestjs/common';
-import { APIGatewayProxyEvent, APIGatewayProxyStructuredResultV2, Context } from 'aws-lambda';
-import express from 'express';
+import * as express from 'express';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 import serverless from 'serverless-http';
@@ -11,7 +10,7 @@ const GLOBAL_PREFIX = functionsName.replace(/\.js/, '');
 
 const expressApp = express();
 
-export const handler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyStructuredResultV2> => {
+export const handler = async (event: unknown, context: unknown): Promise<unknown> => {
   const app: INestApplication = await createServer(expressApp);
 
   await app.setGlobalPrefix(`.netlify/functions/${GLOBAL_PREFIX}`).init();
