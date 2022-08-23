@@ -1,5 +1,5 @@
 [build]
-command = "npm i && npm run build"
+command = "npm install --legacy-peer-deps && npm run build"
 functions = "dist/functions"
 publish = "dist"
 
