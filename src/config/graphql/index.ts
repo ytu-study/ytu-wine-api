@@ -2,7 +2,6 @@ import { ApolloDriverConfig } from '@nestjs/apollo';
 import { Injectable } from '@nestjs/common';
 import { GqlOptionsFactory } from '@nestjs/graphql';
 import { GraphQLFormattedError } from 'graphql';
-import { join } from 'path';
 import { ObjectLiteral } from 'typeorm';
 
 @Injectable()
