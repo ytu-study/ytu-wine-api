@@ -3,7 +3,7 @@ import { Pagination } from '@/wine/model/pagination.args';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineService } from '@/wine/wine.service';
 
-@Resolver('wine')
+@Resolver()
 export class WineResolver {
   constructor(private readonly wineService: WineService) {
   }
