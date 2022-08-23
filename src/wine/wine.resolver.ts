@@ -1,5 +1,4 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
-import { Pagination } from '@/wine/model/pagination.args';
+import { Args, Int, Query, Resolver } from '@nestjs/graphql';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineService } from '@/wine/wine.service';
 
@@ -9,7 +8,10 @@ export class WineResolver {
   }
 
   @Query(() => [Wine])
-  getWines(@Args() pagination?: Pagination): Promise<Wine[]> {
-    return this.wineService.getWines(pagination);
+  getWines(
+    @Args('page', { type: () => Int, defaultValue: 1 }) page = 1,
+    @Args('display', { type: () => Int, defaultValue: 10 }) display = 10,
+  ): Promise<Wine[]> {
+    return this.wineService.getWines(page, display);
   }
 }
