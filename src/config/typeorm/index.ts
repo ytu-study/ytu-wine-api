@@ -7,7 +7,7 @@ export class TypeormService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
       type: 'mongodb',
-      url: '',
+      url: process.env.DB_URL,
       entities: [join(__dirname, '../../', '**/**.entity{.ts,.js}')],
       synchronize: true,
       useNewUrlParser: true,
