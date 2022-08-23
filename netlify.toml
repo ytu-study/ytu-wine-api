@@ -5,5 +5,5 @@ publish = "dist"
 [[redirects]]
 from = "/*"
 to = "/.netlify/functions/api/:splat"
-status = 301
+status = 200
 force = true
