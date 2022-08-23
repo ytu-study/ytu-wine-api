@@ -1,8 +1,8 @@
 [build]
-command = "npm install && npm run build"
+command = "yarn build:netlify"
 functions = "dist/functions"
 publish = "dist"
 [[redirects]]
 from = "/*"
-to = "/.netlify/functions/api"
+to = "/.netlify/functions/index"
 status = 200
