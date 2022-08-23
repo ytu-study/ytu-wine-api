@@ -17,7 +17,7 @@ const createNestServer = async (expressInstance: Express) => {
 
 const appServer = serverless(server);
 
-export const index = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyStructuredResultV2> => {
+export const handler = async (event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyStructuredResultV2> => {
   if (!cacheNest) {
     await createNestServer(server)
       .then(() => Logger.log('🚀 Server running', 'Server'))
