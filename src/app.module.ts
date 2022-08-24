@@ -5,7 +5,6 @@ import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from '@/app.controller';
-import { AppResolver } from '@/app.resolver';
 import { AppService } from '@/app.service';
 import { HttpExceptionFilter } from '@/common/filters';
 import { LoggingInterceptor, TimeoutInterceptor } from '@/common/interceptors';
@@ -30,7 +29,6 @@ import { WineModule } from '@/wine/wine.module';
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
     { provide: APP_INTERCEPTOR, useClass: TimeoutInterceptor },
     AppService,
-    AppResolver,
   ],
 })
 export class AppModule {
