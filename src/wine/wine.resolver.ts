@@ -7,7 +7,7 @@ export class WineResolver {
   constructor(private readonly wineService: WineService) {
   }
 
-  @Query(() => [Wine])
+  @Query(() => [Wine], { description: '와인 목록 조회' })
   getWines(
     @Args('page', { type: () => Int, defaultValue: 1 }) page = 1,
     @Args('display', { type: () => Int, defaultValue: 10 }) display = 10,
