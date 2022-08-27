@@ -12,6 +12,7 @@ export class WineResolver {
     @Args('page', { type: () => Int, defaultValue: 1 }) page = 1,
     @Args('display', { type: () => Int, defaultValue: 10 }) display = 10,
   ): Promise<Wine[]> {
+    console.log('### pr test');
     return this.wineService.getWines(page, display);
   }
 }
