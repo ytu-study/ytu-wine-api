@@ -1,8 +1,13 @@
 import { ApolloDriverConfig } from '@nestjs/apollo';
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { GqlOptionsFactory } from '@nestjs/graphql';
 import { GraphQLFormattedError } from 'graphql';
-import { ObjectLiteral } from 'typeorm';
+
+type ErrorResponse = {
+  statusCode: HttpStatus;
+  message: string[];
+  error: string;
+}
 
 @Injectable()
 export class GraphqlService implements GqlOptionsFactory {
@@ -20,14 +25,11 @@ export class GraphqlService implements GqlOptionsFactory {
       sortSchema: true,
       debug: this.isDevelopment,
       formatError: ({ extensions, ...error }) => {
-        const { code, response } = (extensions ?? {}) as { code: number; response: ObjectLiteral };
-        if (!response) return { ...error, code };
+        const { code, response } = extensions as { code: string; response: ErrorResponse; };
+        if (!response) return { statusCode: 500, status: 'Internal Server Error', code, message: error.message };
 
-        const validations = (response).message;
-        const validation = validations.reduce((acc, obj) => ({ ...acc, ...obj }), {});
-        const [message] = Object.values(validation);
-
-        return { ...response, code, message, validation } as GraphQLFormattedError;
+        const { error: status, statusCode, message } = response;
+        return { statusCode, status, code, message: message.join(',') } as GraphQLFormattedError;
       },
     };
   }
