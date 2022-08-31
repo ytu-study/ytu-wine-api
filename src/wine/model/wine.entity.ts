@@ -4,7 +4,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { v4 } from 'uuid';
 
 @Entity()
-@ObjectType()
+@ObjectType({ description: '와인 정보' })
 export class Wine {
   @Expose()
   @ObjectIdColumn({ type: 'uuid' })
@@ -89,7 +89,7 @@ export class Wine {
   @Expose()
   @Column()
   @Field(() => Int, { nullable: true, description: '와인 빈티지 연도' })
-  vintage: number | null;
+  vintage: number;
 
   constructor(wine: Partial<Wine>) {
     if (!wine?.name) return;
