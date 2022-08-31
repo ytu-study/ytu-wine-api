@@ -14,7 +14,7 @@ describe('WineResolver', () => {
   });
 
   it('getWines', async () => {
-    const wines = await resolver.getWines();
+    const wines = await resolver.getWines({ page: 1, display: 10 });
     expect(wines).not.toBeUndefined();
   });
 });

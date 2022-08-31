@@ -14,7 +14,7 @@ describe('WineService', () => {
   });
 
   it('getWines', async () => {
-    const wines = await service.getWines();
+    const wines = await service.getWines({ page: 1, display: 10 });
     expect(wines).not.toBeUndefined();
   });
 });
