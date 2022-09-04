@@ -12,4 +12,9 @@ export class WineResolver {
   getWines(@Args() paginationArgs: PaginationArgs): Promise<Wine[]> {
     return this.wineService.getWines(paginationArgs);
   }
+
+  @Query(() => Wine, { description: '와인 상세목록 조회' })
+  getWine(@Args('id') id: string): Promise<Wine> {
+    return this.wineService.getWine(id);
+  }
 }

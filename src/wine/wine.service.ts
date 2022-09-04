@@ -15,4 +15,8 @@ export class WineService {
       take: display,
     });
   }
+
+  getWine(id: string): Promise<Wine> {
+    return this.wineRepository.findOneBy({ _id: id });
+  }
 }
