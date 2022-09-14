@@ -19,4 +19,8 @@ export class WineService {
   getWine(id: string): Promise<Wine> {
     return this.wineRepository.findOneBy({ _id: id });
   }
+
+  getWineIds(): Promise<string[]> {
+    return this.wineRepository.find({ select: ['_id'] }).then(wines => wines.map(wine => wine._id));
+  }
 }
