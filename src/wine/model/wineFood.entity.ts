@@ -4,7 +4,7 @@ import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { FoodBackgroundImage } from '@/types/FoodBackgroundImage';
 
 @Entity()
-@ObjectType({ description: '와인과 어울리는 음식 정보' })
+@ObjectType({ description: '와인과 어울리는 음식' })
 export class WineFood {
   @Expose()
   @ObjectIdColumn()

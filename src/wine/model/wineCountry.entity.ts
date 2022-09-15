@@ -5,7 +5,7 @@ import { Currency } from '@/types/Currency';
 import { WineGrape } from './wineGrape.entity';
 
 @Entity()
-@ObjectType({ description: '와인 국가 정보' })
+@ObjectType({ description: '와인 국가' })
 export class WineCountry {
   @Expose()
   @ObjectIdColumn()

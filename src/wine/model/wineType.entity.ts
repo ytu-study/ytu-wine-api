@@ -3,7 +3,7 @@ import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 
 @Entity()
-@ObjectType({ description: '와인 타입 정보' })
+@ObjectType({ description: '와인 타입' })
 export class WineType {
   @Expose()
   @ObjectIdColumn()
