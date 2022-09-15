@@ -42,4 +42,8 @@ export class WineService {
       take: display,
     });
   }
+
+  getVivinoWine(id: string): Promise<VivinoWine> {
+    return this.vivinoWineRepository.findOneBy({ _id: id });
+  }
 }

@@ -28,4 +28,9 @@ export class WineResolver {
   getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<VivinoWine[]> {
     return this.wineService.getVivinoWines(paginationArgs);
   }
+
+  @Query(() => VivinoWine, { description: '와인 상세목록 조회' })
+  getVivinoWine(@Args('id') id: string): Promise<VivinoWine> {
+    return this.wineService.getVivinoWine(id);
+  }
 }
