@@ -79,4 +79,15 @@ export class WineService {
   getWineGrape(id: string): Promise<WineGrape> {
     return this.wineGrapeRepository.findOneBy({ _id: id });
   }
+
+  getWineTypes({ page, display }: PaginationArgs): Promise<WineType[]> {
+    return this.wineTypeRepository.find({
+      skip: (page - 1) * display,
+      take: display,
+    });
+  }
+
+  getWineType(id: string): Promise<WineType> {
+    return this.wineTypeRepository.findOneBy({ _id: id });
+  }
 }
