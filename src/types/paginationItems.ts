@@ -11,5 +11,5 @@ export abstract class PaginationItems<T> {
   @Field()
   totalCount: number;
 
-  items: T;
+  abstract items: T;
 }
