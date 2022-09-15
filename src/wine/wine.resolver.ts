@@ -1,4 +1,5 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
+import { VivinoWine } from '@/wine/model/vivinoWine.entity';
 import { PaginationArgs } from '@/args/pagination.args';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineService } from '@/wine/wine.service';
@@ -21,5 +22,10 @@ export class WineResolver {
   @Query(() => [String], { description: '모든 와인 아이디 조회' })
   getWineIds(): Promise<string[]> {
     return this.wineService.getWineIds();
+  }
+
+  @Query(() => [VivinoWine], { description: '와인 목록 조회' })
+  getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<VivinoWine[]> {
+    return this.wineService.getVivinoWines(paginationArgs);
   }
 }
