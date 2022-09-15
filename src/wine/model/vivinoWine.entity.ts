@@ -1,8 +1,8 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
-import { Vintage } from '@/types/Vintage';
-import { Price } from '@/types/Price';
+import { Vintage } from '@/types/vintage';
+import { Price } from '@/types/price';
 
 @Entity()
 @ObjectType({ description: '와인 정보' })

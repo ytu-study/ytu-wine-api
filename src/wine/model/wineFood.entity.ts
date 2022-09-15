@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
-import { FoodBackgroundImage } from '@/types/FoodBackgroundImage';
+import { FoodBackgroundImage } from '@/types/foodBackgroundImage';
 
 @Entity()
 @ObjectType({ description: '와인과 어울리는 음식' })

@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Expose, plainToClass } from 'class-transformer';
-import { PaginationItems } from '@/types/PaginationItems';
+import { PaginationItems } from '@/types/paginationItems';
 import { WineGrape } from '@/wine/model/wineGrape.entity';
 
 @ObjectType({
