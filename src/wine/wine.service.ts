@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
+import { PaginationData } from '@/types/PaginationData';
 import { WineType } from '@/wine/model/wineType.entity';
 import { WineCountry } from '@/wine/model/wineCountry.entity';
 import { WineFood } from '@/wine/model/wineFood.entity';
@@ -36,55 +37,65 @@ export class WineService {
     return this.wineRepository.find({ select: ['_id'] }).then(wines => wines.map(wine => wine._id));
   }
 
-  getVivinoWines({ page, display }: PaginationArgs): Promise<VivinoWine[]> {
-    return this.vivinoWineRepository.find({
+  async getVivinoWines({ page, display }: PaginationArgs): Promise<PaginationData<VivinoWine[]>> {
+    const [data, totalCount] = await this.vivinoWineRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
+
+    return new PaginationData({ page, display, totalCount, data });
   }
 
   getVivinoWine(id: string): Promise<VivinoWine> {
     return this.vivinoWineRepository.findOneBy({ _id: id });
   }
 
-  getWineCountries({ page, display }: PaginationArgs): Promise<WineCountry[]> {
-    return this.wineCountryRepository.find({
+  async getWineCountries({ page, display }: PaginationArgs): Promise<PaginationData<WineCountry[]>> {
+    const [data, totalCount] = await this.wineCountryRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
+
+    return new PaginationData({ page, display, totalCount, data });
   }
 
   getWineCountry(id: string): Promise<WineCountry> {
     return this.wineCountryRepository.findOneBy({ _id: id });
   }
 
-  getWineFoods({ page, display }: PaginationArgs): Promise<WineFood[]> {
-    return this.wineFoodRepository.find({
+  async getWineFoods({ page, display }: PaginationArgs): Promise<PaginationData<WineFood[]>> {
+    const [data, totalCount] = await this.wineFoodRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
+
+    return new PaginationData({ page, display, totalCount, data });
   }
 
   getWineFood(id: string): Promise<WineFood> {
     return this.wineFoodRepository.findOneBy({ _id: id });
   }
 
-  getWineGrapes({ page, display }: PaginationArgs): Promise<WineGrape[]> {
-    return this.wineGrapeRepository.find({
+  async getWineGrapes({ page, display }: PaginationArgs): Promise<PaginationData<WineGrape[]>> {
+    const [data, totalCount] = await this.wineGrapeRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
+
+    return new PaginationData({ page, display, totalCount, data });
   }
 
   getWineGrape(id: string): Promise<WineGrape> {
     return this.wineGrapeRepository.findOneBy({ _id: id });
   }
 
-  getWineTypes({ page, display }: PaginationArgs): Promise<WineType[]> {
-    return this.wineTypeRepository.find({
+  async getWineTypes({ page, display }: PaginationArgs): Promise<PaginationData<WineType[]>> {
+    const [data, totalCount] = await this.wineTypeRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
+
+    return new PaginationData({ page, display, totalCount, data });
   }
 
   getWineType(id: string): Promise<WineType> {

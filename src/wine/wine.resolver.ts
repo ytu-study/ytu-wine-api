@@ -1,4 +1,5 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
+import { PaginationData } from '@/types/PaginationData';
 import { PaginationArgs } from '@/args/pagination.args';
 import { VivinoWine } from '@/wine/model/vivinoWine.entity';
 import { Wine } from '@/wine/model/wine.entity';
@@ -29,7 +30,7 @@ export class WineResolver {
   }
 
   @Query(() => [VivinoWine], { description: '와인 목록 조회' })
-  getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<VivinoWine[]> {
+  getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<PaginationData<VivinoWine[]>> {
     return this.wineService.getVivinoWines(paginationArgs);
   }
 
@@ -39,7 +40,7 @@ export class WineResolver {
   }
 
   @Query(() => [WineCountry], { description: '와인 국가 목록 조회' })
-  getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<WineCountry[]> {
+  getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<PaginationData<WineCountry[]>> {
     return this.wineService.getWineCountries(paginationArgs);
   }
 
@@ -49,7 +50,7 @@ export class WineResolver {
   }
 
   @Query(() => [WineFood], { description: '와인과 어울리는 음식 목록 조회' })
-  getWineFoods(@Args() paginationArgs: PaginationArgs): Promise<WineFood[]> {
+  getWineFoods(@Args() paginationArgs: PaginationArgs): Promise<PaginationData<WineFood[]>> {
     return this.wineService.getWineFoods(paginationArgs);
   }
 
@@ -59,7 +60,7 @@ export class WineResolver {
   }
 
   @Query(() => [WineGrape], { description: '와인 포도 품종 목록 조회' })
-  getWineGrapes(@Args() paginationArgs: PaginationArgs): Promise<WineGrape[]> {
+  getWineGrapes(@Args() paginationArgs: PaginationArgs): Promise<PaginationData<WineGrape[]>> {
     return this.wineService.getWineGrapes(paginationArgs);
   }
 
@@ -69,7 +70,7 @@ export class WineResolver {
   }
 
   @Query(() => [WineType], { description: '와인 타입 목록 조회' })
-  getWineTypes(@Args() paginationArgs: PaginationArgs): Promise<WineType[]> {
+  getWineTypes(@Args() paginationArgs: PaginationArgs): Promise<PaginationData<WineType[]>> {
     return this.wineService.getWineTypes(paginationArgs);
   }
 
