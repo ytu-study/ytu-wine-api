@@ -1,4 +1,5 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
+import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
 import { PaginationVivinoWine } from '@/wine/model/paginationVivinoWine';
 import { PaginationWineCountry } from '@/wine/model/paginationWineCountry';
@@ -39,7 +40,7 @@ export class WineResolver {
   }
 
   @Query(() => VivinoWine, { description: '와인 상세목록 조회' })
-  getVivinoWine(@Args('id') id: string): Promise<VivinoWine> {
+  getVivinoWine(@Args() id: ObjectIdArgs): Promise<VivinoWine> {
     return this.wineService.getVivinoWine(id);
   }
 
@@ -49,7 +50,7 @@ export class WineResolver {
   }
 
   @Query(() => WineCountry, { description: '와인 국가 상세목록 조회' })
-  getWineCountry(@Args('id') id: string): Promise<WineCountry> {
+  getWineCountry(@Args() id: ObjectIdArgs): Promise<WineCountry> {
     return this.wineService.getWineCountry(id);
   }
 
@@ -59,7 +60,7 @@ export class WineResolver {
   }
 
   @Query(() => WineFood, { description: '와인과 어울리는 음식 상세목록 조회' })
-  getWineFood(@Args('id') id: string): Promise<WineFood> {
+  getWineFood(@Args() id: ObjectIdArgs): Promise<WineFood> {
     return this.wineService.getWineFood(id);
   }
 
@@ -69,7 +70,7 @@ export class WineResolver {
   }
 
   @Query(() => WineGrape, { description: '와인 포도 품종 상세목록 조회' })
-  getWineGrape(@Args('id') id: string): Promise<WineGrape> {
+  getWineGrape(@Args() id: ObjectIdArgs): Promise<WineGrape> {
     return this.wineService.getWineGrape(id);
   }
 
@@ -78,8 +79,8 @@ export class WineResolver {
     return this.wineService.getWineTypes(paginationArgs);
   }
 
-  @Query(() => WineType, { description: '와인 타입 상세목록 조회' })
-  getWineType(@Args('id') id: string): Promise<WineType> {
+  @Query(() => WineType, { nullable: true, description: '와인 타입 상세목록 조회' })
+  getWineType(@Args() id: ObjectIdArgs): Promise<WineType> {
     return this.wineService.getWineType(id);
   }
 }

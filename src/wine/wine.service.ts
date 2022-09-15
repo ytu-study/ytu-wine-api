@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
+import { ObjectId } from 'mongodb';
+import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
 import { PaginationVivinoWine } from '@/wine/model/paginationVivinoWine';
 import { PaginationWineCountry } from '@/wine/model/paginationWineCountry';
@@ -50,8 +52,8 @@ export class WineService {
     return new PaginationVivinoWine({ page, display, totalCount, items: data });
   }
 
-  getVivinoWine(id: string): Promise<VivinoWine> {
-    return this.vivinoWineRepository.findOneBy({ _id: id });
+  getVivinoWine({ id }: ObjectIdArgs): Promise<VivinoWine> {
+    return this.vivinoWineRepository.findOneBy({ _id: ObjectId(id) });
   }
 
   async getWineCountries({ page, display }: PaginationArgs): Promise<PaginationWineCountry> {
@@ -63,8 +65,8 @@ export class WineService {
     return new PaginationWineCountry({ page, display, totalCount, items: data });
   }
 
-  getWineCountry(id: string): Promise<WineCountry> {
-    return this.wineCountryRepository.findOneBy({ _id: id });
+  getWineCountry({ id }: ObjectIdArgs): Promise<WineCountry> {
+    return this.wineCountryRepository.findOneBy({ _id: ObjectId(id) });
   }
 
   async getWineFoods({ page, display }: PaginationArgs): Promise<PaginationWineFood> {
@@ -76,8 +78,8 @@ export class WineService {
     return new PaginationWineFood({ page, display, totalCount, items: data });
   }
 
-  getWineFood(id: string): Promise<WineFood> {
-    return this.wineFoodRepository.findOneBy({ _id: id });
+  getWineFood({ id }: ObjectIdArgs): Promise<WineFood> {
+    return this.wineFoodRepository.findOneBy({ _id: ObjectId(id) });
   }
 
   async getWineGrapes({ page, display }: PaginationArgs): Promise<PaginationWineGrape> {
@@ -89,8 +91,8 @@ export class WineService {
     return new PaginationWineGrape({ page, display, totalCount, items: data });
   }
 
-  getWineGrape(id: string): Promise<WineGrape> {
-    return this.wineGrapeRepository.findOneBy({ _id: id });
+  getWineGrape({ id }: ObjectIdArgs): Promise<WineGrape> {
+    return this.wineGrapeRepository.findOneBy({ _id: ObjectId(id) });
   }
 
   async getWineTypes({ page, display }: PaginationArgs): Promise<PaginationWineType> {
@@ -102,7 +104,7 @@ export class WineService {
     return new PaginationWineType({ page, display, totalCount, items: data });
   }
 
-  getWineType(id: string): Promise<WineType> {
-    return this.wineTypeRepository.findOneBy({ _id: id });
+  async getWineType({ id }: ObjectIdArgs): Promise<WineType> {
+    return this.wineTypeRepository.findOneBy({ _id: ObjectId(id) });
   }
 }
