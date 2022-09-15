@@ -16,7 +16,7 @@ export class PaginationWineCountry implements PaginationItems<WineCountry[]> {
   @Expose()
   totalCount: number;
 
-  @Field(() => [WineCountry])
+  @Field(() => [WineCountry], { nullable: 'items' })
   items: WineCountry[];
 
   constructor(pagination: PaginationWineCountry) {

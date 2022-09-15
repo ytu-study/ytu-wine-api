@@ -17,7 +17,7 @@ export class PaginationWineGrape implements PaginationItems<WineGrape[]> {
   totalCount: number;
 
   @Expose()
-  @Field(() => [WineGrape])
+  @Field(() => [WineGrape], { nullable: 'items' })
   items: WineGrape[];
 
   constructor(pagination: PaginationWineGrape) {

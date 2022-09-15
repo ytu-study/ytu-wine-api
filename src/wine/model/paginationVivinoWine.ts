@@ -17,7 +17,7 @@ export class PaginationVivinoWine implements PaginationItems<VivinoWine[]> {
   totalCount: number;
 
   @Expose()
-  @Field(() => [VivinoWine])
+  @Field(() => [VivinoWine], { nullable: 'items' })
   items: VivinoWine[];
 
   constructor(pagination: PaginationVivinoWine) {
