@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { Expose, plainToClass } from 'class-transformer';
 import { Column, Entity, ObjectIdColumn } from 'typeorm';
 import { Currency } from '@/types/currency';
@@ -7,9 +7,8 @@ import { WineGrape } from './wineGrape.entity';
 @Entity()
 @ObjectType({ description: '와인 국가' })
 export class WineCountry {
-  @Expose()
   @ObjectIdColumn()
-  @Field({ description: 'objectId' })
+  @Field(() => ID, { description: 'objectId' })
   _id?: string;
 
   @Expose()
