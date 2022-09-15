@@ -46,4 +46,11 @@ export class WineService {
   getVivinoWine(id: string): Promise<VivinoWine> {
     return this.vivinoWineRepository.findOneBy({ _id: id });
   }
+
+  getWineCountries({ page, display }: PaginationArgs):Promise<WineCountry[]> {
+    return this.wineCountryRepository.find({
+      skip: (page - 1) * display,
+      take: display,
+    });
+  }
 }

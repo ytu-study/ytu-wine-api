@@ -3,6 +3,7 @@ import { VivinoWine } from '@/wine/model/vivinoWine.entity';
 import { PaginationArgs } from '@/args/pagination.args';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineService } from '@/wine/wine.service';
+import { WineCountry } from './model/wineCountry.entity';
 
 @Resolver()
 export class WineResolver {
@@ -32,5 +33,10 @@ export class WineResolver {
   @Query(() => VivinoWine, { description: '와인 상세목록 조회' })
   getVivinoWine(@Args('id') id: string): Promise<VivinoWine> {
     return this.wineService.getVivinoWine(id);
+  }
+
+  @Query(() => [WineCountry], { description: '와인 국가 목록 조회' })
+  getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<WineCountry[]> {
+    return this.wineService.getWineCountries(paginationArgs);
   }
 }
