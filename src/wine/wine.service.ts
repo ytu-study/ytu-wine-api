@@ -36,7 +36,7 @@ export class WineService {
     return this.wineRepository.find({ select: ['_id'] }).then(wines => wines.map(wine => wine._id));
   }
 
-  getVivinoWines({ page, display }: PaginationArgs):Promise<VivinoWine[]> {
+  getVivinoWines({ page, display }: PaginationArgs): Promise<VivinoWine[]> {
     return this.vivinoWineRepository.find({
       skip: (page - 1) * display,
       take: display,
@@ -47,10 +47,14 @@ export class WineService {
     return this.vivinoWineRepository.findOneBy({ _id: id });
   }
 
-  getWineCountries({ page, display }: PaginationArgs):Promise<WineCountry[]> {
+  getWineCountries({ page, display }: PaginationArgs): Promise<WineCountry[]> {
     return this.wineCountryRepository.find({
       skip: (page - 1) * display,
       take: display,
     });
+  }
+
+  getWineCountry(id: string): Promise<WineCountry> {
+    return this.wineCountryRepository.findOneBy({ _id: id });
   }
 }

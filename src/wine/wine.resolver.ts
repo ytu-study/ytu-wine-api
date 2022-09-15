@@ -39,4 +39,9 @@ export class WineResolver {
   getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<WineCountry[]> {
     return this.wineService.getWineCountries(paginationArgs);
   }
+
+  @Query(() => WineCountry, { description: '와인 국가 상세목록 조회' })
+  getWineCountry(@Args('id') id: string): Promise<WineCountry> {
+    return this.wineService.getWineCountry(id);
+  }
 }
