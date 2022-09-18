@@ -1,11 +1,11 @@
 import { Args, Query, Resolver } from '@nestjs/graphql';
 import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
-import { PaginationVivinoWine } from '@/wine/model/paginationVivinoWine';
-import { PaginationWineCountry } from '@/wine/model/paginationWineCountry';
+import { PaginatedVivinoWine } from '@/wine/model/paginatedVivinoWine';
+import { PaginatedWineCountry } from '@/wine/model/paginatedWineCountry';
 import { PaginationWineFood } from '@/wine/model/paginationWineFood';
 import { PaginationWineGrape } from '@/wine/model/paginationWineGrape';
-import { PaginationWineType } from '@/wine/model/paginationWineType';
+import { PaginatedWineType } from '@/wine/model/paginatedWineType';
 import { VivinoWine } from '@/wine/model/vivinoWine.entity';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineFood } from '@/wine/model/wineFood.entity';
@@ -34,8 +34,8 @@ export class WineResolver {
     return this.wineService.getWineIds();
   }
 
-  @Query(() => PaginationVivinoWine, { description: '와인 목록 조회' })
-  getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<PaginationVivinoWine> {
+  @Query(() => PaginatedVivinoWine, { description: '와인 목록 조회' })
+  getVivinoWines(@Args() paginationArgs: PaginationArgs): Promise<PaginatedVivinoWine> {
     return this.wineService.getVivinoWines(paginationArgs);
   }
 
@@ -44,8 +44,8 @@ export class WineResolver {
     return this.wineService.getVivinoWine(id);
   }
 
-  @Query(() => PaginationWineCountry, { description: '와인 국가 목록 조회' })
-  getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<PaginationWineCountry> {
+  @Query(() => PaginatedWineCountry, { description: '와인 국가 목록 조회' })
+  getWineCountries(@Args() paginationArgs: PaginationArgs): Promise<PaginatedWineCountry> {
     return this.wineService.getWineCountries(paginationArgs);
   }
 
@@ -74,8 +74,8 @@ export class WineResolver {
     return this.wineService.getWineGrape(id);
   }
 
-  @Query(() => PaginationWineType, { description: '와인 타입 목록 조회' })
-  getWineTypes(@Args() paginationArgs: PaginationArgs): Promise<PaginationWineType> {
+  @Query(() => PaginatedWineType, { description: '와인 타입 목록 조회' })
+  getWineTypes(@Args() paginationArgs: PaginationArgs): Promise<PaginatedWineType> {
     return this.wineService.getWineTypes(paginationArgs);
   }
 
