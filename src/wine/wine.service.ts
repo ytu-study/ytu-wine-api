@@ -4,11 +4,11 @@ import { MongoRepository } from 'typeorm';
 import { ObjectId } from 'mongodb';
 import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
-import { PaginationVivinoWine } from '@/wine/model/paginationVivinoWine';
-import { PaginationWineCountry } from '@/wine/model/paginationWineCountry';
+import { PaginatedVivinoWine } from '@/wine/model/paginatedVivinoWine';
+import { PaginatedWineCountry } from '@/wine/model/paginatedWineCountry';
 import { PaginationWineFood } from '@/wine/model/paginationWineFood';
 import { PaginationWineGrape } from '@/wine/model/paginationWineGrape';
-import { PaginationWineType } from '@/wine/model/paginationWineType';
+import { PaginatedWineType } from '@/wine/model/paginatedWineType';
 import { VivinoWine } from '@/wine/model/vivinoWine.entity';
 import { Wine } from '@/wine/model/wine.entity';
 import { WineCountry } from '@/wine/model/wineCountry.entity';
@@ -43,26 +43,26 @@ export class WineService {
     return this.wineRepository.find({ select: ['_id'] }).then(wines => wines.map(wine => wine._id));
   }
 
-  async getVivinoWines({ page, display }: PaginationArgs): Promise<PaginationVivinoWine> {
+  async getVivinoWines({ page, display }: PaginationArgs): Promise<PaginatedVivinoWine> {
     const [data, totalCount] = await this.vivinoWineRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
 
-    return new PaginationVivinoWine({ page, display, totalCount, items: data });
+    return { page, display, totalCount, items: data };
   }
 
   getVivinoWine({ id }: ObjectIdArgs): Promise<VivinoWine> {
     return this.vivinoWineRepository.findOneBy({ _id: ObjectId(id) });
   }
 
-  async getWineCountries({ page, display }: PaginationArgs): Promise<PaginationWineCountry> {
+  async getWineCountries({ page, display }: PaginationArgs): Promise<PaginatedWineCountry> {
     const [data, totalCount] = await this.wineCountryRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
 
-    return new PaginationWineCountry({ page, display, totalCount, items: data });
+    return { page, display, totalCount, items: data };
   }
 
   getWineCountry({ id }: ObjectIdArgs): Promise<WineCountry> {
@@ -75,7 +75,7 @@ export class WineService {
       take: display,
     });
 
-    return new PaginationWineFood({ page, display, totalCount, items: data });
+    return { page, display, totalCount, items: data };
   }
 
   getWineFood({ id }: ObjectIdArgs): Promise<WineFood> {
@@ -88,20 +88,20 @@ export class WineService {
       take: display,
     });
 
-    return new PaginationWineGrape({ page, display, totalCount, items: data });
+    return { page, display, totalCount, items: data };
   }
 
   getWineGrape({ id }: ObjectIdArgs): Promise<WineGrape> {
     return this.wineGrapeRepository.findOneBy({ _id: ObjectId(id) });
   }
 
-  async getWineTypes({ page, display }: PaginationArgs): Promise<PaginationWineType> {
+  async getWineTypes({ page, display }: PaginationArgs): Promise<PaginatedWineType> {
     const [data, totalCount] = await this.wineTypeRepository.findAndCount({
       skip: (page - 1) * display,
       take: display,
     });
 
-    return new PaginationWineType({ page, display, totalCount, items: data });
+    return { page, display, totalCount, items: data };
   }
 
   async getWineType({ id }: ObjectIdArgs): Promise<WineType> {
