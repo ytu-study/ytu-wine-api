@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { ConfigModuleOptions } from '@nestjs/config';
 
 export const configOptions: ConfigModuleOptions = {

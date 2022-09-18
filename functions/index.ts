@@ -1,9 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { ExpressAdapter } from '@nestjs/platform-express';
-import { Express } from 'express';
-import * as express from 'express';
-import * as serverless from 'serverless-http';
+import express, { Express } from 'express';
+import serverless from 'serverless-http';
 import { APIGatewayProxyEvent, APIGatewayProxyStructuredResultV2, Context } from 'aws-lambda';
 import { AppModule } from '@/app.module';
 
