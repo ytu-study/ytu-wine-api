@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
-import { ObjectId } from 'mongodb';
 import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
 import { PaginatedVivinoWine } from '@/wine/model/paginatedVivinoWine';
@@ -53,7 +52,7 @@ export class WineService {
   }
 
   getVivinoWine({ id }: ObjectIdArgs): Promise<VivinoWine> {
-    return this.vivinoWineRepository.findOneBy({ _id: ObjectId(id) });
+    return this.vivinoWineRepository.findOneBy({ _id: id });
   }
 
   async getWineCountries({ page, display }: PaginationArgs): Promise<PaginatedWineCountry> {
@@ -66,7 +65,7 @@ export class WineService {
   }
 
   getWineCountry({ id }: ObjectIdArgs): Promise<WineCountry> {
-    return this.wineCountryRepository.findOneBy({ _id: ObjectId(id) });
+    return this.wineCountryRepository.findOneBy({ _id: id });
   }
 
   async getWineFoods({ page, display }: PaginationArgs): Promise<PaginationWineFood> {
@@ -79,7 +78,7 @@ export class WineService {
   }
 
   getWineFood({ id }: ObjectIdArgs): Promise<WineFood> {
-    return this.wineFoodRepository.findOneBy({ _id: ObjectId(id) });
+    return this.wineFoodRepository.findOneBy({ _id: id });
   }
 
   async getWineGrapes({ page, display }: PaginationArgs): Promise<PaginationWineGrape> {
@@ -92,7 +91,7 @@ export class WineService {
   }
 
   getWineGrape({ id }: ObjectIdArgs): Promise<WineGrape> {
-    return this.wineGrapeRepository.findOneBy({ _id: ObjectId(id) });
+    return this.wineGrapeRepository.findOneBy({ _id: id });
   }
 
   async getWineTypes({ page, display }: PaginationArgs): Promise<PaginatedWineType> {
@@ -105,6 +104,6 @@ export class WineService {
   }
 
   async getWineType({ id }: ObjectIdArgs): Promise<WineType> {
-    return this.wineTypeRepository.findOneBy({ _id: ObjectId(id) });
+    return this.wineTypeRepository.findOneBy({ _id: id });
   }
 }
