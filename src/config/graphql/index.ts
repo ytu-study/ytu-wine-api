@@ -2,6 +2,7 @@ import { ApolloDriverConfig } from '@nestjs/apollo';
 import { HttpStatus, Injectable } from '@nestjs/common';
 import { GqlOptionsFactory } from '@nestjs/graphql';
 import { GraphQLFormattedError } from 'graphql';
+import { ObjectIdScalar } from '@/config/graphql/scalars/objectId.scalar';
 
 type ErrorResponse = {
   statusCode: HttpStatus;
@@ -24,6 +25,9 @@ export class GraphqlService implements GqlOptionsFactory {
       introspection: true,
       sortSchema: true,
       debug: this.isDevelopment,
+      resolvers: [
+        { ObjectId: ObjectIdScalar },
+      ],
       formatError: ({ extensions, ...error }) => {
         const { code, response } = extensions as { code: string; response: ErrorResponse; };
         if (!response) return { statusCode: 500, status: 'Internal Server Error', code, message: error.message };

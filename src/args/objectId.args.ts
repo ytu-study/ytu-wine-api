@@ -1,7 +1,8 @@
-import { ArgsType, Field, ID } from '@nestjs/graphql';
+import { ArgsType, Field } from '@nestjs/graphql';
+import { ObjectIdScalar } from '@/config/graphql/scalars/objectId.scalar';
 
 @ArgsType()
 export class ObjectIdArgs {
-  @Field(() => ID)
+  @Field(() => ObjectIdScalar)
   id: string;
 }
