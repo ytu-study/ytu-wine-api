@@ -14,7 +14,7 @@ interface IEntity extends Type<IBaseEntity> {
 
 export function BaseEntity(description: string): IEntity {
   @ObjectType({ isAbstract: true })
-  class BaseEntity<T> {
+  class BaseEntity<T> implements IBaseEntity {
     static description = description;
 
     @Exclude()
@@ -29,5 +29,5 @@ export function BaseEntity(description: string): IEntity {
     }
   }
 
-  return BaseEntity as IEntity;
+  return BaseEntity;
 }
