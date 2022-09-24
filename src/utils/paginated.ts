@@ -2,10 +2,6 @@ import { Type } from '@nestjs/common';
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Min } from 'class-validator';
 
-interface ClassRef<T> extends Type<T> {
-  description: string;
-}
-
 export interface IPaginatedType<T> {
   page: number;
   display: number;
@@ -13,7 +9,7 @@ export interface IPaginatedType<T> {
   items: T[];
 }
 
-export function Paginated<T>(classRef: ClassRef<T>): Type<IPaginatedType<T>> {
+export function Paginated<T>(classRef: Type<T>, description?: string): Type<IPaginatedType<T>> {
   @ObjectType({ isAbstract: true })
   abstract class PaginatedType implements IPaginatedType<T> {
     @Min(1)
@@ -27,7 +23,7 @@ export function Paginated<T>(classRef: ClassRef<T>): Type<IPaginatedType<T>> {
     @Field(() => Int, { description: '총 개수' })
     totalCount: number;
 
-    @Field(() => [classRef], { description: classRef.description })
+    @Field(() => [classRef], { description })
     items: T[];
   }
 
