@@ -5,25 +5,25 @@ import { ObjectIdArgs } from '@/args/objectId.args';
 import { PaginationArgs } from '@/args/pagination.args';
 import { PaginatedVivinoWine } from '@/wine/model/paginatedVivinoWine';
 import { PaginatedWineCountry } from '@/wine/model/paginatedWineCountry';
+import { PaginatedWineType } from '@/wine/model/paginatedWineType';
 import { PaginationWineFood } from '@/wine/model/paginationWineFood';
 import { PaginationWineGrape } from '@/wine/model/paginationWineGrape';
-import { PaginatedWineType } from '@/wine/model/paginatedWineType';
-import { VivinoWine } from '@/wine/model/vivinoWine.entity';
+import { VivinoWineEntity } from '@/wine/model/vivinoWine.entity';
 import { Wine } from '@/wine/model/wine.entity';
-import { WineCountry } from '@/wine/model/wineCountry.entity';
-import { WineFood } from '@/wine/model/wineFood.entity';
-import { WineGrape } from '@/wine/model/wineGrape.entity';
-import { WineType } from '@/wine/model/wineType.entity';
+import { WineCountryEntity } from '@/wine/model/wineCountry.entity';
+import { WineFoodEntity } from '@/wine/model/wineFood.entity';
+import { WineGrapeEntity } from '@/wine/model/wineGrape.entity';
+import { WineTypeEntity } from '@/wine/model/wineType.entity';
 
 @Injectable()
 export class WineService {
   constructor(
     @InjectRepository(Wine) private readonly wineRepository: MongoRepository<Wine>,
-    @InjectRepository(VivinoWine) private readonly vivinoWineRepository: MongoRepository<VivinoWine>,
-    @InjectRepository(WineCountry) private readonly wineCountryRepository: MongoRepository<WineCountry>,
-    @InjectRepository(WineFood) private readonly wineFoodRepository: MongoRepository<WineFood>,
-    @InjectRepository(WineGrape) private readonly wineGrapeRepository: MongoRepository<WineGrape>,
-    @InjectRepository(WineType) private readonly wineTypeRepository: MongoRepository<WineType>,
+    @InjectRepository(VivinoWineEntity) private readonly vivinoWineRepository: MongoRepository<VivinoWineEntity>,
+    @InjectRepository(WineCountryEntity) private readonly wineCountryRepository: MongoRepository<WineCountryEntity>,
+    @InjectRepository(WineFoodEntity) private readonly wineFoodRepository: MongoRepository<WineFoodEntity>,
+    @InjectRepository(WineGrapeEntity) private readonly wineGrapeRepository: MongoRepository<WineGrapeEntity>,
+    @InjectRepository(WineTypeEntity) private readonly wineTypeRepository: MongoRepository<WineTypeEntity>,
   ) {
   }
 
@@ -51,7 +51,7 @@ export class WineService {
     return { page, display, totalCount, items: data };
   }
 
-  getVivinoWine({ id }: ObjectIdArgs): Promise<VivinoWine> {
+  getVivinoWine({ id }: ObjectIdArgs): Promise<VivinoWineEntity> {
     return this.vivinoWineRepository.findOneBy({ _id: id });
   }
 
@@ -64,7 +64,7 @@ export class WineService {
     return { page, display, totalCount, items: data };
   }
 
-  getWineCountry({ id }: ObjectIdArgs): Promise<WineCountry> {
+  getWineCountry({ id }: ObjectIdArgs): Promise<WineCountryEntity> {
     return this.wineCountryRepository.findOneBy({ _id: id });
   }
 
@@ -77,7 +77,7 @@ export class WineService {
     return { page, display, totalCount, items: data };
   }
 
-  getWineFood({ id }: ObjectIdArgs): Promise<WineFood> {
+  getWineFood({ id }: ObjectIdArgs): Promise<WineFoodEntity> {
     return this.wineFoodRepository.findOneBy({ _id: id });
   }
 
@@ -90,7 +90,7 @@ export class WineService {
     return { page, display, totalCount, items: data };
   }
 
-  getWineGrape({ id }: ObjectIdArgs): Promise<WineGrape> {
+  getWineGrape({ id }: ObjectIdArgs): Promise<WineGrapeEntity> {
     return this.wineGrapeRepository.findOneBy({ _id: id });
   }
 
@@ -103,7 +103,7 @@ export class WineService {
     return { page, display, totalCount, items: data };
   }
 
-  async getWineType({ id }: ObjectIdArgs): Promise<WineType> {
+  async getWineType({ id }: ObjectIdArgs): Promise<WineTypeEntity> {
     return this.wineTypeRepository.findOneBy({ _id: id });
   }
 }
