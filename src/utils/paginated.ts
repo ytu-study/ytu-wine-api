@@ -27,7 +27,7 @@ export function Paginated<T>(classRef: ClassRef<T>): Type<IPaginatedType<T>> {
     @Field(() => Int, { description: '총 개수' })
     totalCount: number;
 
-    @Field(() => [classRef], { nullable: 'items', description: classRef.description })
+    @Field(() => [classRef], { description: classRef.description })
     items: T[];
   }
 
