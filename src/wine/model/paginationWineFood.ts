@@ -1,7 +1,7 @@
 import { ObjectType } from '@nestjs/graphql';
 import { Paginated } from '@/utils/paginated';
-import { WineFood } from '@/wine/model/wineFood.entity';
+import { WineFoodEntity } from '@/wine/model/wineFood.entity';
 
 @ObjectType()
-export class PaginationWineFood extends Paginated(WineFood) {
+export class PaginationWineFood extends Paginated(WineFoodEntity, '와인과 어울리는 음식') {
 }
