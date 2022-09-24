@@ -4,30 +4,30 @@ import { Exclude, plainToInstance } from 'class-transformer';
 import isEmpty from 'lodash/isEmpty';
 import { ObjectIdColumn } from 'typeorm';
 
-interface IBaseEntity {
-  _id?: string;
+type IBaseEntity = {
+  id?: string;
 }
 
-interface IEntity extends Type<IBaseEntity> {
-  description: string;
+class EmptyClass {
 }
 
-export function BaseEntity(description: string): IEntity {
+export function BaseEntity<T>(classRef?: Type<T>): Type<IBaseEntity> & Type<T> {
+  const ClassRef = classRef ?? EmptyClass;
+
   @ObjectType({ isAbstract: true })
-  class BaseEntity<T> implements IBaseEntity {
-    static description = description;
-
+  abstract class BaseEntity extends ClassRef implements IBaseEntity {
     @Exclude()
-    @ObjectIdColumn()
+    @ObjectIdColumn({ name: '_id' })
     @Field(() => ID, { description: 'objectId' })
-    _id?: string;
+    id?: string;
 
-    constructor(classRef: Type<T>, entity: Partial<T>) {
+    protected constructor(classRef: Type<T>, entity: Partial<T>) {
+      super();
       if (isEmpty(entity)) return;
 
       Object.assign(this, plainToInstance(classRef, entity));
     }
   }
 
-  return BaseEntity;
+  return BaseEntity as Type<IBaseEntity> & Type<T>;
 }
