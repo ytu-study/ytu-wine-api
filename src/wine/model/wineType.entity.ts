@@ -2,24 +2,22 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity } from 'typeorm';
 import { BaseEntity } from '@/utils/entity';
 
-const description = '와인 타입';
-
-@Entity()
-@ObjectType({ description })
-export class WineType extends BaseEntity(description) {
-  @Column()
-  @Field(() => Int, { description: '' })
-  id: number;
+@Entity({ name: 'wine_type' })
+@ObjectType({ description: '와인 타입' })
+export class WineTypeEntity extends BaseEntity() {
+  @Column({ name: 'id' })
+  @Field(() => Int, { description: '와인 타입 ID' })
+  typeId: number;
 
   @Column()
-  @Field({ description: '' })
+  @Field({ description: '와인 타입 이름' })
   name: string;
 
   @Column()
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '와인 타입 조회수' })
   winesCount: number;
 
-  constructor(wineType: Partial<WineType>) {
-    super(WineType, wineType);
+  constructor(wineType: Partial<WineTypeEntity>) {
+    super(WineTypeEntity, wineType);
   }
 }
