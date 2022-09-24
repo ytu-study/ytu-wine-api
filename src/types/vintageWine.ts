@@ -5,7 +5,7 @@ import { Winery } from '@/types/winery';
 import { WineStatistics } from '@/types/wineStatistics';
 import { WineStyle } from '@/types/wineStyle';
 
-@ObjectType()
+@ObjectType({ description: '와인 정보' })
 export class VintageWine {
   @Field(() => Int, { description: '와인 ID' })
   id: number;

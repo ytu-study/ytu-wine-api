@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Currency } from '@/types/currency';
 import { WineGrape } from '@/types/wineGrape';
 
-@ObjectType({ description: '와인 국가' })
+@ObjectType({ description: '와인 국가 정보' })
 export class WineCountry {
   @Field({ description: '국가 코드' })
   code: string;

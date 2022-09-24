@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { IsEnum } from 'class-validator';
 import { CurrencyCode } from '@/types/enums';
 
-@ObjectType()
+@ObjectType({ description: '통화 정보' })
 export class Currency {
   @IsEnum(CurrencyCode)
   @Field(() => CurrencyCode, { description: '통화 코드' })

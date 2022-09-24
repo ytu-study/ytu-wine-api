@@ -1,10 +1,10 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
-@ObjectType()
+@ObjectType({ description: '풍미 통계 정보' })
 export class FlavorStats {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '풍미 수' })
   count: number;
 
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '풍미 점수' })
   score: number;
 }

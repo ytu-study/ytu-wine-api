@@ -4,7 +4,7 @@ import { VintageImage } from '@/types/vintageImage';
 import { VintageStatistics } from '@/types/vintageStatistics';
 import { VintageWine } from '@/types/vintageWine';
 
-@ObjectType()
+@ObjectType({ description: '와인 빈티지 정보' })
 export class Vintage {
   @Field(() => Int, { description: '빈티지 ID' })
   id: number;

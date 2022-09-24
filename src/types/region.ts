@@ -3,7 +3,7 @@ import { RegionBackgroundImage } from '@/types/regionBackgroundImage';
 import { RegionStatistics } from '@/types/regionStatistics';
 import { WineCountry } from '@/types/wineCountry';
 
-@ObjectType()
+@ObjectType({ description: '와인 지역 정보' })
 export class Region {
   @Field(() => Int, { description: '와인 지역 ID' })
   id: number;

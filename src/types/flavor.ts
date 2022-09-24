@@ -1,21 +1,21 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { IsEnum } from 'class-validator';
-import { AryKeyword } from '@/types/aryKeyword';
+import { Keyword } from '@/types/keyword';
 import { FlavorStats } from '@/types/flavorStats';
 import { FlavorGroup } from '@/types/enums';
 
-@ObjectType()
+@ObjectType({ description: '풍미 정보' })
 export class Flavor {
   @IsEnum(FlavorGroup)
-  @Field(() => FlavorGroup, { description: '' })
+  @Field(() => FlavorGroup, { description: '풍미 그룹' })
   group: FlavorGroup;
 
-  @Field(() => FlavorStats, { description: '' })
+  @Field(() => FlavorStats, { description: '풍미 통계' })
   stats: FlavorStats;
 
-  @Field(() => [AryKeyword], { nullable: true, description: '' })
-  primaryKeywords: AryKeyword[] | null;
+  @Field(() => [Keyword], { nullable: true, description: '일반적인 풍미 키워드' })
+  primaryKeywords: Keyword[] | null;
 
-  @Field(() => [AryKeyword], { nullable: true, description: '' })
-  secondaryKeywords: AryKeyword[] | null;
+  @Field(() => [Keyword], { nullable: true, description: '이차적인 풍미 키워드' })
+  secondaryKeywords: Keyword[] | null;
 }
