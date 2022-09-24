@@ -1,11 +1,11 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { IsEnum } from 'class-validator';
-import { WineCountry } from '@/wine/model/wineCountry.entity';
-import { StyleBackgroundImage } from '@/types/styleBackgroundImage';
-import { Region } from '@/types/region';
 import { AcidityDescription, BodyDescription } from '@/types/enums';
-import { WineFood } from '@/wine/model/wineFood.entity';
-import { WineGrape } from '@/wine/model/wineGrape.entity';
+import { Region } from '@/types/region';
+import { StyleBackgroundImage } from '@/types/styleBackgroundImage';
+import { WineFood } from '@/types/wineFood';
+import { WineGrape } from '@/types/wineGrape';
+import { WineCountryEntity } from '@/wine/model/wineCountry.entity';
 
 @ObjectType()
 export class WineStyle {
@@ -53,8 +53,8 @@ export class WineStyle {
   @Field(() => AcidityDescription, { description: '' })
   acidityDescription: AcidityDescription;
 
-  @Field(() => WineCountry, { description: '' })
-  country: WineCountry;
+  @Field(() => WineCountryEntity, { description: '' })
+  country: WineCountryEntity;
 
   @Field(() => Int, { description: '' })
   wineTypeId: number;

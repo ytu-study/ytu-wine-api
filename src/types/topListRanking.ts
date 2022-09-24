@@ -3,15 +3,15 @@ import { TopList } from '@/types/topList';
 
 @ObjectType()
 export class TopListRanking {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int)
   rank: number;
 
-  @Field(() => Int, { description: '' })
+  @Field(() => Int)
   previousRank: number;
 
-  @Field({ nullable: true, description: '' })
+  @Field({ nullable: true })
   description: string | null;
 
-  @Field(() => TopList, { description: '' })
+  @Field(() => TopList)
   topList: TopList;
 }

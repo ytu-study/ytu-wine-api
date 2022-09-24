@@ -5,13 +5,13 @@ import { CurrencyCode } from '@/types/enums';
 @ObjectType()
 export class Currency {
   @IsEnum(CurrencyCode)
-  @Field(() => CurrencyCode, { description: '' })
+  @Field(() => CurrencyCode, { description: '통화 코드' })
   code: CurrencyCode;
 
-  @Field({ description: '' })
+  @Field({ description: '통화 이름' })
   name: string;
 
-  @Field({ nullable: true, description: '' })
+  @Field({ nullable: true, description: '통화 표시 부호' })
   prefix: string | null;
 
   @Field({ nullable: true, description: '', deprecationReason: 'deprecated' })

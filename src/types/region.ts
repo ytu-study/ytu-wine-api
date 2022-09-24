@@ -1,34 +1,31 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { RegionStatistics } from '@/types/regionStatistics';
 import { RegionBackgroundImage } from '@/types/regionBackgroundImage';
-import { WineCountry } from '@/wine/model/wineCountry.entity';
+import { RegionStatistics } from '@/types/regionStatistics';
+import { WineCountry } from '@/types/wineCountry';
 
 @ObjectType()
 export class Region {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '와인 지역 ID' })
   id: number;
 
-  @Field({ description: '' })
+  @Field({ description: '와인 지역 이름' })
   name: string;
 
-  @Field({ description: '' })
+  @Field({ description: '와인 지역 이름' })
   nameEn: string;
 
-  @Field({ description: '' })
+  @Field({ description: '와인 지역 이름(kebab-case)' })
   seoName: string;
 
-  @Field(() => WineCountry, { description: '' })
+  @Field(() => WineCountry, { description: '와인 국가' })
   country: WineCountry;
 
-  @Field(() => RegionBackgroundImage, { nullable: true, description: '' })
+  @Field(() => RegionBackgroundImage, { nullable: true, description: '와인 지역 이미지' })
   backgroundImage: RegionBackgroundImage | null;
 
-  @Field(() => Int, { nullable: true, description: '' })
+  @Field(() => Int, { nullable: true, deprecationReason: 'deprecated' })
   parentId: number | null;
 
-  @Field(() => RegionStatistics, { nullable: true, description: '' })
+  @Field(() => RegionStatistics, { nullable: true, deprecationReason: 'deprecated' })
   statistics: RegionStatistics | null;
-
-  @Field({ deprecationReason: 'deprecated', description: '' })
-  class: string | null
 }

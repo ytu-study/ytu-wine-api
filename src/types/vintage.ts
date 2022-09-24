@@ -6,30 +6,30 @@ import { VintageWine } from '@/types/vintageWine';
 
 @ObjectType()
 export class Vintage {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '빈티지 ID' })
   id: number;
 
-  @Field({ description: '' })
+  @Field({ description: '와이너리 + 와인 + 빈티지 이름(kebab-case)' })
   seoName: string;
 
-  @Field({ description: '' })
+  @Field({ description: '와이너리 + 와인 + 빈티지연도 이름' })
   name: string;
 
-  @Field(() => VintageStatistics, { description: '' })
+  @Field(() => VintageStatistics, { description: '와인 통계' })
   statistics: VintageStatistics;
 
-  @Field(() => VintageImage, { description: '' })
+  @Field(() => VintageImage, { description: '와인 이미지' })
   image: VintageImage;
 
-  @Field(() => VintageWine, { description: '' })
+  @Field(() => VintageWine, { description: '와인' })
   wine: VintageWine;
 
-  @Field(() => String, { description: '' })
+  @Field(() => String, { description: '빈티지 연도' })
   year: string;
 
-  @Field({ description: '' })
+  @Field({ deprecationReason: 'deprecated' })
   hasValidRatings: boolean;
 
-  @Field(() => [TopListRanking], { nullable: true, description: '' })
+  @Field(() => [TopListRanking], { nullable: true, deprecationReason: 'deprecated' })
   topListRankings: TopListRanking[] | null;
 }

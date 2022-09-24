@@ -2,21 +2,21 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class TopList {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int)
   id: number;
 
-  @Field({ description: '' })
+  @Field()
   location: string;
 
-  @Field({ description: '' })
+  @Field()
   name: string;
 
-  @Field({ description: '' })
+  @Field()
   seoName: string;
 
-  @Field(() => Int, { description: '' })
+  @Field(() => Int)
   type: number;
 
-  @Field({ description: '' })
+  @Field()
   year: string;
 }

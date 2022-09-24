@@ -4,7 +4,7 @@ import { Currency } from '@/types/currency';
 
 @ObjectType()
 export class Price {
-  @Field(() => Int, { description: '' })
+  @Field(() => Int, { description: '가격 ID' })
   id: number;
 
   @Field({ description: '' })
@@ -22,12 +22,12 @@ export class Price {
   @Field(() => Int, { description: '' })
   bottleTypeId: number;
 
-  @Field(() => Currency, { description: '' })
+  @Field(() => Currency, { description: '통화' })
   currency: Currency;
 
-  @Field(() => BottleType, { description: '' })
+  @Field(() => BottleType, { description: '병 유형' })
   bottleType: BottleType;
 
-  @Field({ description: '' })
+  @Field({ description: '가격' })
   amount: number;
 }

@@ -3,7 +3,7 @@ import { FoodVariations } from '@/types/foodVariations';
 
 @ObjectType()
 export class FoodBackgroundImage {
-  @Field({ description: '' })
+  @Field({ deprecationReason: 'deprecated' })
   location: string;
 
   @Field(() => FoodVariations, { description: '' })
